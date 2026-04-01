@@ -4,19 +4,21 @@ from player import Player
 from enemy import Enemy
 from key import Key
 from wall import Wall
+from utils import resource_path
 
 # tamanho da tela
 width, height = 920, 650
 
 class Game:
     def __init__(self):
-        pygame.init()
+        pygame.display.init()
+        pygame.font.init()
 
         # inicia o audio
         pygame.mixer.init()
 
         # carrega música de fundo
-        pygame.mixer.music.load("sounds/Combat_music_wav.wav")
+        pygame.mixer.music.load(resource_path("sounds/Combat_music_wav.wav"))
 
         # toca em loop infinito (-1)
         pygame.mixer.music.play(-1)
@@ -25,8 +27,16 @@ class Game:
         pygame.mixer.music.set_volume(0.5)
 
         # cria a tela
-        self.screen = pygame.display.set_mode((width, height))
+
+        #self.screen = pygame.display.set_mode((width, height))
+        try:
+            self.screen = pygame.display.set_mode((width, height))
+        except Exception as e:
+            print("Erro ao criar tela:", e)
+            sys.exit()
         pygame.display.set_caption("The Last Key: Castle Escape")
+
+        print("Display iniciado com sucesso")
 
         self.state = "menu"
 
@@ -100,7 +110,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
         # carrega imagem do mapa
-        self.map = pygame.image.load("images/map_909x638.png").convert()
+        self.map = pygame.image.load(resource_path("images/map_909x638.png")).convert()
 
         #portal inicial (lado esquerdo)
         self.start_portal = pygame.Rect(50, 170, 80, 120)

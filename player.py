@@ -1,9 +1,10 @@
 import pygame
+from utils import resource_path
 
 class Player:
     def __init__(self, x, y):
         # carrega imagem do player
-        self.image = pygame.image.load("images/hero_50x75.png").convert_alpha()
+        self.image = pygame.image.load(resource_path("images/hero_50x75.png")).convert_alpha()
 
         # ajuste do tamanho
         self.image = pygame.transform.scale(self.image, (50, 75))

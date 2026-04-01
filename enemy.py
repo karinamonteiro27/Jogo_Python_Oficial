@@ -1,10 +1,11 @@
 import pygame
+from utils import resource_path
 
 class Enemy:
     def __init__(self, x, y):
 
         # carrega imagem
-        self.image = pygame.image.load("images/enemy_42x58.png").convert_alpha()
+        self.image = pygame.image.load(resource_path("images/enemy_42x58.png")).convert_alpha()
 
         # tamanho do inimigo
         self.image = pygame.transform.scale(self.image, (42, 58))

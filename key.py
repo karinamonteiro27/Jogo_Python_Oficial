@@ -1,9 +1,10 @@
 import pygame
+from utils import resource_path
 
 class Key:
     def __init__(self, x, y):
         # carrega imagem da chave
-        self.image = pygame.image.load("images/key_30x30.png").convert_alpha()
+        self.image = pygame.image.load(resource_path("images/key_30x30.png")).convert_alpha()
 
         # tamanho da chave
         self.image = pygame.transform.scale(self.image, (30, 30))
